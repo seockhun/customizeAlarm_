@@ -1,14 +1,25 @@
-import React from "react";
-import { SafeAreaView, Text, Image, StyleSheet, TouchableOpacity,  } from "react-native";
+import React, { useState } from "react";
+import { SafeAreaView, Text, Image, StyleSheet, TouchableOpacity,Modal  } from "react-native";
 import { Plus } from "../../../assets";
 import { COLOR } from "../../styles";
+import Content from "../modal/content";
 
 export default function Header(){
+
+    const [modal, setModal] = useState<boolean>(false);
+
     return(
-        <SafeAreaView style={styles.container}>
-            <Image style={styles.hiddenPlus} source={Plus} />
-            <Text style={styles.logoText}>MyCal</Text>
-            <Image style={styles.plus} source={Plus} />
+        <SafeAreaView>
+            <SafeAreaView style={styles.container}>
+                <Image style={styles.hiddenPlus} source={Plus} />
+                <Text style={styles.logoText}>MyCal</Text>
+                <TouchableOpacity onPress={() =>{ setModal(true)}}>
+                    <Image style={styles.plus} source={Plus} />
+                </TouchableOpacity>
+            </SafeAreaView>
+            <Modal visible={modal} animationType="slide" >
+                <Content />
+            </Modal>
         </SafeAreaView>
     )
 }
@@ -34,5 +45,5 @@ const styles = StyleSheet.create({
         transform: [{ translateX: -10 }],
         width: 23,
         height: 23,
-    }
+    },
 });
