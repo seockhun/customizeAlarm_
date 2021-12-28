@@ -1,0 +1,1 @@
+export const SET_INPUT_MODAL = "MODAL/SET_INPUT_MODAL" as const;
