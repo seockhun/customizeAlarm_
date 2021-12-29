@@ -1,14 +1,28 @@
-import React from "react";
-import { SafeAreaView, Text, Image, StyleSheet, TouchableOpacity,  } from "react-native";
+import React, { useState } from "react";
+import { SafeAreaView, Text, Image, StyleSheet, View, TouchableOpacity, Modal} from "react-native";
 import { Plus } from "../../../assets";
 import { COLOR } from "../../styles";
+import useModal from "../../utils/hooks/modal/useModal";
+import Content from "../modal/content";
 
 export default function Header(){
+
+    const modal = useModal();
+
     return(
-        <SafeAreaView style={styles.container}>
-            <Image style={styles.hiddenPlus} source={Plus} />
-            <Text style={styles.logoText}>MyCal</Text>
-            <Image style={styles.plus} source={Plus} />
+        <SafeAreaView>
+                <SafeAreaView style={styles.container}>
+                    <Image style={styles.hiddenPlus} source={Plus} />
+                    <Text style={styles.logoText}>MyCal</Text>
+                    <TouchableOpacity onPress={() =>{ modal.setState.setInputModal(true)}}>
+                        <Image style={styles.plus} source={Plus} />
+                    </TouchableOpacity>
+                </SafeAreaView>
+            <Modal presentationStyle="formSheet" visible={modal.state.modal.inputModalState} animationType="slide" >
+                <View style={styles.modal}>
+                    <Content />
+                </View>
+            </Modal>
         </SafeAreaView>
     )
 }
@@ -19,6 +33,7 @@ const styles = StyleSheet.create({
         padding: 20,
         flexDirection: "row",
         justifyContent: "space-between",
+        backgroundColor: `${(COLOR.backColor)}`,
     },
     logoText: {
         color: `${(COLOR.headerText)}`,
@@ -34,5 +49,8 @@ const styles = StyleSheet.create({
         transform: [{ translateX: -10 }],
         width: 23,
         height: 23,
+    },
+    modal: {
+        height: "100%",
     }
 });
