@@ -121,6 +121,5 @@ const styles = StyleSheet.create({
         height: 15,
         marginBottom: -40,
         marginTop: 30,
-        marginRight: -15
     }
 })
