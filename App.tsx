@@ -5,26 +5,15 @@ import Header from "./src/components/public/header";
 import store from './src/modules/redux/store';
 import Main from './src/components/main';
 import { COLOR } from './src/styles';
+import Signin from './src/components/login/signin';
 
 export default function App() {
   return (
     <Provider store={store}>
       <SafeAreaView style={styles.container}>
-        <Header />
+        {/* <Header /> */}
         <ScrollView contentContainerStyle={{flexGrow : 1, alignItems : 'center'}} style={styles.mainContainer}>
-          <Main /> 
-          <Main /> 
-          <Main /> 
-          <Main /> 
-          <Main /> 
-          <Main /> 
-          <Main /> 
-          <Main /> 
-          <Main /> 
-          <Main /> 
-          <Main /> 
-          <Main /> 
-          <Main /> 
+          <Signin />
         </ScrollView>
       </SafeAreaView>
     </Provider>
